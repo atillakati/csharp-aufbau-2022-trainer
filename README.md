@@ -1,4 +1,4 @@
-![WIFI Logo](docs/wifi_campus.png)
+![WIFI Logo](docs/wifi_campus.PNG)
 # C# Aubau
 Examples from our C# journey 2022
 
