@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BuchVerwaltung
 {
-    internal class Book
+    internal struct Book
     {
         public string Title { get; set; }
         public string Author { get; set; }

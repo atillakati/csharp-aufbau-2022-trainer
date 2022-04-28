@@ -30,34 +30,96 @@ namespace BuchVerwaltung
              *             
              * */
 
-            var books = new List<Book>
+            var myBookList = new List<Book>();
+            bool shouldRepeat = false;
+
+            do
             {
-                new Book
+                var book = GetNewBook();
+                myBookList.Add(book);
+
+                shouldRepeat = AskUser();
+            }
+            while (shouldRepeat);
+
+            DisplayBookList(myBookList);
+        }
+
+        private static bool AskUser()
+        {
+            Console.Write("Noch ein Buch (j/n)? ");
+            var input = Console.ReadLine();
+
+            if (input.ToLower() == "j")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private static Book GetNewBook()
+        {
+            var book = new Book();
+
+            Console.Write("Titel: ");
+            book.Title = Console.ReadLine();
+            Console.Write("Autor: ");
+            book.Author = Console.ReadLine();
+            Console.Write("Isbn:  ");
+            book.Isbn = Console.ReadLine();
+            Console.Write("Preis eingeben: ");
+            book.Price = decimal.Parse(Console.ReadLine());
+            Console.Write("Veröffentlicht am (yyyy): ");
+            book.DateOfPublish = int.Parse(Console.ReadLine());
+            book.Genre = GetGenreType();
+
+            return book;
+        }
+
+        private static BookGenre GetGenreType()
+        {
+            int number = 1;
+
+            Console.WriteLine("\nBitte auswählen:");
+
+            var possibleValues = Enum.GetNames(typeof(BookGenre));
+            foreach (var item in possibleValues)
+            {
+                Console.WriteLine($"\t{number}:{item}");
+                number++;
+            }
+
+            Console.Write("Ihre Wahl: ");
+            int selection = int.Parse(Console.ReadLine());
+
+            return (BookGenre)(selection - 1);
+        }
+
+        private static void DisplayBookList(List<Book> books)
+        {
+            List<BookEntity> myClassList = new List<BookEntity>();
+
+            //map struct type into class types
+            foreach (var book in books)
+            {
+                var bookEntity = new BookEntity
                 {
-                    Title = "Die unendliche Geschichte",
-                    Author = "Michael Ende",
-                    DateOfPublish=1980,
-                    Genre = BookGenre.SienceFiction,
-                    Isbn ="X-4354863215-9",
-                    Price = 32.5m
-                },
-                new Book
-                {
-                    Title ="Die Nadel",
-                    Author = "Ken Follet",
-                    DateOfPublish=1970,
-                    Isbn="X-32154656544-9",
-                    Price = 55.90m,
-                    Genre = BookGenre.Crime
-                }
-            };
+                    Titel = book.Title,
+                    Autor = book.Author,
+                    DateOfPublish = book.DateOfPublish,
+                    Isbn = book.Isbn,
+                    Genre = book.Genre,
+                    Price = book.Price
+                };
 
-            Console.WriteLine("\nMeine Bücher:\n");
+                myClassList.Add(bookEntity);
+            }
 
-            ConsoleTableBuilder.From(books)
-                               .WithFormat(ConsoleTableBuilderFormat.Default)
-                               .ExportAndWriteLine(TableAligntment.Center);
-
+            //display list of classes
+            ConsoleTableBuilder
+                            .From(myClassList)
+                            .ExportAndWriteLine(TableAligntment.Center);
         }
     }
 }
