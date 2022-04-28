@@ -31,3 +31,5 @@ internal class Book
 ```
 
 Hier gehts zum [Repository](https://github.com/atillakati/csharp-aufbau-2022-trainer)!
+
+See the [Markdown guide](https://www.markdownguide.org/basic-syntax/) for more details!
