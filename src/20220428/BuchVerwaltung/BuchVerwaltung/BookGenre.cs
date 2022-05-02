@@ -2,10 +2,10 @@
 {
     internal enum BookGenre
     {
-        Thriller,
-        Crime,
-        SienceFiction,
-        Comedy,
-        History
+        Thriller = 0,
+        Crime = 10,
+        SienceFiction = 20,
+        Comedy = 30,
+        History = 40
     }
 }

@@ -68,13 +68,61 @@ namespace BuchVerwaltung
             book.Author = Console.ReadLine();
             Console.Write("Isbn:  ");
             book.Isbn = Console.ReadLine();
-            Console.Write("Preis eingeben: ");
-            book.Price = decimal.Parse(Console.ReadLine());
-            Console.Write("Veröffentlicht am (yyyy): ");
-            book.DateOfPublish = int.Parse(Console.ReadLine());
+
+            book.Price = GetDecimal("Preis eingeben: ");            
+            book.DateOfPublish = GetInt("Veröffentlicht am (yyyy): ");
+
             book.Genre = GetGenreType();
 
             return book;
+        }
+
+        private static decimal GetDecimal(string inputPrompt)
+        {
+            decimal inputValue = 0.0m;
+            bool inputIsValid = false;
+
+            do
+            {
+                try
+                {
+                    Console.Write(inputPrompt);
+                    inputValue = decimal.Parse(Console.ReadLine());
+                    inputIsValid = true;
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("ERROR: "+ ex.Message);
+                    inputIsValid = false;
+                }
+            }
+            while (!inputIsValid);
+
+            return inputValue;
+        }
+
+        private static int GetInt(string inputPrompt)
+        {
+            int inputValue = 0;
+            bool inputIsValid = false;
+
+            do
+            {
+                try
+                {
+                    Console.Write(inputPrompt);
+                    inputValue = int.Parse(Console.ReadLine());
+                    inputIsValid = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("ERROR: " + ex.Message);
+                    inputIsValid = false;
+                }
+            }
+            while (!inputIsValid);
+
+            return inputValue;
         }
 
         private static BookGenre GetGenreType()
@@ -89,6 +137,9 @@ namespace BuchVerwaltung
                 Console.WriteLine($"\t{number}:{item}");
                 number++;
             }
+
+            //Hint: Use this to write a generic enum input method... 
+            //var intValues = Enum.GetValues(typeof(BookGenre)).Cast<int>().ToList();
 
             Console.Write("Ihre Wahl: ");
             int selection = int.Parse(Console.ReadLine());
