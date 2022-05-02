@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32422.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wifi.ToolsLibrary.TestApp", "Wifi.ToolsLibrary.TestApp\Wifi.ToolsLibrary.TestApp.csproj", "{166F0BCF-8573-445A-8B3B-4BF65D800782}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wifi.ToolsLibrary.ConsoleCore", "Wifi.ToolsLibrary.ConsoleCore\Wifi.ToolsLibrary.ConsoleCore.csproj", "{EF156CE5-0444-4704-BFAD-C163B370A259}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{166F0BCF-8573-445A-8B3B-4BF65D800782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166F0BCF-8573-445A-8B3B-4BF65D800782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166F0BCF-8573-445A-8B3B-4BF65D800782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166F0BCF-8573-445A-8B3B-4BF65D800782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF156CE5-0444-4704-BFAD-C163B370A259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF156CE5-0444-4704-BFAD-C163B370A259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF156CE5-0444-4704-BFAD-C163B370A259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF156CE5-0444-4704-BFAD-C163B370A259}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ABF580B2-0671-4C6A-9873-EC07AC495827}
+	EndGlobalSection
+EndGlobal
