@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +10,14 @@ namespace Wifi.ToolsLibrary.TestApp
     {
         static void Main(string[] args)
         {
-            var gebJahr = Tools.GetInputValue<int>("Bitte Geburtsjahr eingeben: ");
-            Console.WriteLine("Alter: " + (DateTime.Now.Year - gebJahr));
+            //var gebJahr = Tools.GetInputValue<int>("Bitte Geburtsjahr eingeben: ");
+            //Console.WriteLine("Alter: " + (DateTime.Now.Year - gebJahr));
 
             //var length = Tools.GetInputValue<double>("Bitte Länge Seite 1eingeben: ");
 
+            
 
             var myBook = Tools.GetInputValue<Book>("Bitte Buchdaten eingeben: ");
         }
     }
-
-    internal class Book { }
 }
