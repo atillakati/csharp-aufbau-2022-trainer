@@ -10,7 +10,7 @@ Dabei ist auf folgendes zu achten:
 - **keine public Fields** in den Klassen
 
 ## Extension Methods
-Extension Methods sind eine Möglichkeit einen Typen mit ext. Membern zu erweitern. Besonders hilfreich ist diese Technik, wenn der Typ mit  konventionellen Methoden (Vererbung, Code Erweiterung) ertweitert werden kann.
+Extension Methods sind eine Möglichkeit einen Typen mit ext. Membern zu erweitern. Besonders hilfreich ist diese Technik, wenn der Typ mit  konventionellen Methoden (Vererbung, Code Erweiterung) **nicht** ertweitert werden kann.
 
 ```csharp
 internal static class SpeedUnitExtensions
