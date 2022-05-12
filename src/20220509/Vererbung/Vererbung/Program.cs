@@ -16,7 +16,10 @@ namespace Vererbung
             myCar.DisplayInfos();
 
             myCar.ChangeRadioPower(true);
-            
+
+            SpeedUnit speedUnit = SpeedUnit.KmPerHour;
+            var einheit = speedUnit.GetUnitText();
+
         }
 
         //static void Main(string[] args)
