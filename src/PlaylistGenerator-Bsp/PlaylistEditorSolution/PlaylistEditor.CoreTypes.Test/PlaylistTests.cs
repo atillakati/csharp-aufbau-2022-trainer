@@ -13,6 +13,17 @@ namespace PlaylistEditor.CoreTypes.Test
     {
         private Playlist _fixture;
 
+        //[Test]
+        //public void EinEinfacherTest()
+        //{
+        //    int zahl1 = 0;
+        //    int zahl2 = 5;
+
+        //    var erg = zahl1 + zahl2;
+
+        //    Assert.That(erg, Is.EqualTo(5));
+        //}
+
         [SetUp]
         public void Init()
         {
@@ -34,7 +45,7 @@ namespace PlaylistEditor.CoreTypes.Test
         [Test]
         public void Duration_Get()
         {
-            //Assign
+            //Arrange
             var mockedPlaylistItem1 = new Mock<IPlaylistItem>();
             var mockedPlaylistItem2 = new Mock<IPlaylistItem>();
 
@@ -54,7 +65,7 @@ namespace PlaylistEditor.CoreTypes.Test
         [Test]
         public void Items_AddOneItem()
         {
-            //Assign
+            //Arrange
             var mockedPlaylistItem = new Mock<IPlaylistItem>();
             _fixture.Add(mockedPlaylistItem.Object);
 
@@ -66,20 +77,9 @@ namespace PlaylistEditor.CoreTypes.Test
         }
 
         [Test]
-        public void EinEinfacherTest()
-        {
-            int zahl1 = 0;
-            int zahl2 = 5;
-
-            var erg = zahl1 + zahl2;
-
-            Assert.That(erg, Is.EqualTo(5));
-        }
-
-        [Test]
         public void Description_Get()
         {
-            //Assign
+            //Arrange
             
             //Act
             var erg = _fixture.Description;
@@ -91,7 +91,7 @@ namespace PlaylistEditor.CoreTypes.Test
         [Test]
         public void Author_Get()
         {
-            //Assign
+            //Arrange
             
             //Act
             var erg = _fixture.Author;
@@ -103,7 +103,7 @@ namespace PlaylistEditor.CoreTypes.Test
         [Test]
         public void CreateDate_Get()
         {
-            //Assign
+            //Arrange
             var testDateTime = new DateTime(1980, 4, 1);            
 
             //Act
@@ -111,6 +111,78 @@ namespace PlaylistEditor.CoreTypes.Test
 
             //Assert
             Assert.That(erg, Is.EqualTo(testDateTime));
+        }
+
+        [Test]
+        public void Add()
+        {
+            //Arrange
+            var mockedItem = new Mock<IPlaylistItem>();
+            var erg = _fixture.Items.Count();
+
+            //Act
+            _fixture.Add(mockedItem.Object);
+
+            //Assert
+            Assert.That(_fixture.Items.Count(), Is.EqualTo(erg+1));
+        }
+
+        [Test]
+        public void Add_ItemIsNull()
+        {
+            //Arrange            
+            var erg = _fixture.Items.Count();
+
+            //Act
+            _fixture.Add(null);
+
+            //Assert
+            Assert.That(_fixture.Items.Count(), Is.EqualTo(erg));
+        }
+
+        [Test]
+        public void Remove()
+        {
+            //Arrange
+            var mockedItem = new Mock<IPlaylistItem>();
+            _fixture.Add(mockedItem.Object);
+            var erg = _fixture.Items.Count();
+
+            //Act
+            _fixture.Remove(mockedItem.Object);
+
+            //Assert
+            Assert.That(_fixture.Items.Count(), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Remove_ItemIsNull()
+        {
+            //Arrange
+            var mockedItem = new Mock<IPlaylistItem>();
+            _fixture.Add(mockedItem.Object);
+            var erg = _fixture.Items.Count();
+
+            //Act
+            _fixture.Remove(null);
+
+            //Assert
+            Assert.That(_fixture.Items.Count(), Is.EqualTo(1));
+        }
+
+
+        [Test]
+        public void Clear()
+        {
+            //Arrange
+            var mockedItem = new Mock<IPlaylistItem>();
+            _fixture.Add(mockedItem.Object);            
+
+            //Act
+            _fixture.Clear();
+
+            //Assert
+            Assert.That(_fixture.Items.Count(), Is.EqualTo(0));
         }
     }
 }
