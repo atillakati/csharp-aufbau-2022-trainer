@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PlaylistEditor.CoreTypes
 {
-    public class Playlist
+    public class Playlist : IPlaylist
     {
         private string _description;
         private string _author;
@@ -34,7 +34,7 @@ namespace PlaylistEditor.CoreTypes
         {
             get
             {
-                if(_items == null || _items.Count == 0)
+                if (_items == null || _items.Count == 0)
                 {
                     return TimeSpan.Zero;
                 }
@@ -48,10 +48,10 @@ namespace PlaylistEditor.CoreTypes
         public IEnumerable<IPlaylistItem> Items => _items;
 
         public DateTime CreateDate => _createDate;
-        
+
         public string Author => _author;
-        
-        public string Description => _description;        
+
+        public string Description => _description;
 
 
         public void Add(IPlaylistItem newItem)
@@ -66,7 +66,7 @@ namespace PlaylistEditor.CoreTypes
 
         public void Remove(IPlaylistItem itemToRemove)
         {
-            if(itemToRemove == null)
+            if (itemToRemove == null)
             {
                 return;
             }

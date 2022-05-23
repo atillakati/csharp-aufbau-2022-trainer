@@ -113,6 +113,7 @@ namespace PlaylistEditor.CoreTypes.Test
             Assert.That(erg, Is.EqualTo(testDateTime));
         }
 
+
         [Test]
         public void Add()
         {
@@ -152,7 +153,7 @@ namespace PlaylistEditor.CoreTypes.Test
             _fixture.Remove(mockedItem.Object);
 
             //Assert
-            Assert.That(_fixture.Items.Count(), Is.EqualTo(0));
+            Assert.That(_fixture.Items.Count(), Is.EqualTo(erg-1));
         }
 
         [Test]
