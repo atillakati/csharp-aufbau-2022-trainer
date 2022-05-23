@@ -28,3 +28,7 @@
 ### Persistenz Ebene
 
 ![Klassendiagramm Part 1](images/classes-part2.drawio.png)
+
+### Factories
+
+![Klassendiagramm Part 1](images/classes-part3.drawio.png)
