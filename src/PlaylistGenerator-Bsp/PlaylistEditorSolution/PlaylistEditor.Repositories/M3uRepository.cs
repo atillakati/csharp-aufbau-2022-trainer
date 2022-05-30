@@ -109,7 +109,7 @@ namespace PlaylistEditor.Repositories
                 createDate = File.GetCreationTime(filePath);
             }
 
-            return new Playlist(autor, description, createDate);
+            return PlaylistFactory.Create(autor, description, createDate);
         }
 
     }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistEditor.Repositories
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistEditor.Repositories.Test", "PlaylistEditor.Repositories.Test\PlaylistEditor.Repositories.Test.csproj", "{5918D13E-BA51-4AF4-97A6-BE08EB229F8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistEditor.Factories", "PlaylistEditor.Factories\PlaylistEditor.Factories.csproj", "{580C290A-5A58-4A5E-8C02-123722E01F99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5918D13E-BA51-4AF4-97A6-BE08EB229F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5918D13E-BA51-4AF4-97A6-BE08EB229F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5918D13E-BA51-4AF4-97A6-BE08EB229F8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{580C290A-5A58-4A5E-8C02-123722E01F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{580C290A-5A58-4A5E-8C02-123722E01F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{580C290A-5A58-4A5E-8C02-123722E01F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{580C290A-5A58-4A5E-8C02-123722E01F99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
