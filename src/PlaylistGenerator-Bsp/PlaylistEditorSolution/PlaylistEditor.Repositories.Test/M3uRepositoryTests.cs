@@ -30,13 +30,18 @@ namespace PlaylistEditor.Repositories.Test
         public void Load()
         {
             //Arrange
-            var mockedPlaylistItemFactory = new Mock<IPlaylistItemFactory>();            
+            var mockedPlaylistItemFactory = new Mock<IPlaylistItemFactory>();  
+            mockedPlaylistItemFactory.Setup(x => x.Create(It.IsAny<string>())).Returns(new Mock<IPlaylistItem>().Object);
             var fixture = new M3uRepository(mockedPlaylistItemFactory.Object);
 
             //Act
             var playlist = fixture.Load("dummyPlaylist.m3u");
 
             //Assert
+            Assert.That(playlist.Author, Is.EqualTo("DJ Gandalf"));
+            Assert.That(playlist.Description, Is.EqualTo("Dummy Top Charts 2022"));
+            Assert.That(playlist.CreateDate, Is.EqualTo(new DateTime(2020, 4, 1)));
+            Assert.That(playlist.Items.Count(), Is.EqualTo(2));
         }
 
         private IPlaylist CreateDummyPlaylist()
