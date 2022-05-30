@@ -27,7 +27,7 @@ namespace PlaylistEditor.Factories
         {
             IRepository repository = null;
 
-            if(string.IsNullOrEmpty(filePath) || !File.Exists(filePath))
+            if(string.IsNullOrEmpty(filePath))
             {
                 return repository;
             }
