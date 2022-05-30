@@ -47,6 +47,7 @@
     <Compile Include="IPlaylistItem.cs" />
     <Compile Include="IPlaylistItemFactory.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="IRepositoryFactory.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="PlaylistFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

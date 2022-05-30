@@ -2,10 +2,10 @@
 
 namespace PlaylistEditor.CoreTypes
 {
-    public interface IPlaylistItemFactory
+    public interface IRepositoryFactory
     {
         IEnumerable<IFileInfo> AvailableTypes { get; }
 
-        IPlaylistItem Create(string itemPath);
+        IRepository Create(string filePath);
     }
 }
