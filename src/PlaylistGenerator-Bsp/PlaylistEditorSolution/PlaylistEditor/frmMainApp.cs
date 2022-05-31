@@ -40,6 +40,7 @@ namespace PlaylistEditor
 
             UpdateTitleArea();
             UpdateItemsArea();
+            SetEditingModeActive(true);
         }
 
         private void UpdateItemsArea()
@@ -72,25 +73,32 @@ namespace PlaylistEditor
 
         private void UpdateTitleArea()
         {
-            lbl_title.Text = $"{_playlist.Description} - {_playlist.Author} [{_playlist.Duration}]";
+            lbl_title.Text = $"{_playlist.Description} - {_playlist.Author} [{_playlist.Duration.ToFriendlyText()}]";
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            InitFileDialog(openFileDialog, _playlistItemFactory.AvailableTypes, "Select playlist items");
+            openFileDialog.Multiselect = true;
+
             if (openFileDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
 
-            var item = _playlistItemFactory.Create(openFileDialog.FileName);
-            if (item != null)
+            foreach (var filePath in openFileDialog.FileNames)
             {
-                _playlist.Add(item);
-
-                UpdateTitleArea();
-                UpdateItemsArea();
+                var item = _playlistItemFactory.Create(filePath);
+                if (item != null)
+                {
+                    _playlist.Add(item);
+                }
             }
+
+            UpdateTitleArea();
+            UpdateItemsArea();
         }
+
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -122,15 +130,79 @@ namespace PlaylistEditor
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            InitFileDialog(saveFileDialog, _repositoryFactory.AvailableTypes, "Save playlist as file");
             if (saveFileDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
 
             var repository = _repositoryFactory.Create(saveFileDialog.FileName);
-            if(repository != null)
+            if (repository != null)
             {
                 repository.Save(saveFileDialog.FileName, _playlist);
+            }
+        }
+
+        private void InitFileDialog(FileDialog fileDialog, IEnumerable<IFileInfo> availableTypes, string dialogTitle)
+        {
+            if(fileDialog == null || availableTypes == null || string.IsNullOrEmpty(dialogTitle))
+            {
+                return;
+            }
+
+            fileDialog.Title = dialogTitle;
+            var filterString = availableTypes.Aggregate(string.Empty, (a,b) => a + b.Description + "|*" + b.Extension+ "|");
+            filterString = filterString.Remove(filterString.Length - 1, 1);   
+
+            fileDialog.Filter = filterString;            
+        }
+
+        private void frmMainApp_Load(object sender, EventArgs e)
+        {
+            lbl_title.Text = string.Empty;
+            lbl_itemDetails.Text = string.Empty;
+
+            SetEditingModeActive(false);
+        }
+
+        private void SetEditingModeActive(bool isActive)
+        {
+            saveToolStripMenuItem.Enabled = isActive;
+            addToolStripMenuItem.Enabled = isActive;
+            removeToolStripMenuItem.Enabled = isActive;
+            clearToolStripMenuItem.Enabled = isActive;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InitFileDialog(openFileDialog, _repositoryFactory.AvailableTypes, "Select playlist to load");
+            openFileDialog.Multiselect = false;
+            if(openFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            var repository = _repositoryFactory.Create(openFileDialog.FileName);
+            if(repository != null)
+            {
+                _playlist = repository.Load(openFileDialog.FileName);
+
+                UpdateTitleArea();
+                UpdateItemsArea();
+                SetEditingModeActive(true);
+            }
+        }
+
+        private void listView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {            
+            if(e.Item.Tag is IPlaylistItem playlistItem)
+            {
+                lbl_itemDetails.Text = $"{playlistItem.FilePath}\n\rDuration: {playlistItem.Duration.ToFriendlyText()}";
             }
         }
     }
